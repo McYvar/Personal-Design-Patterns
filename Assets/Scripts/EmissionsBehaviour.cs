@@ -38,9 +38,9 @@ public class EmissionsBehaviour : MonoBehaviour
         }
     }
 
-    public static void PushUndoStack(MeshRenderer mesh)
+    public static void PushUndoStack(MeshRenderer _mesh)
     {
-        emissionUndoStack.Push(mesh);
+        emissionUndoStack.Push(_mesh);
         canUpdate = true;
     }
     

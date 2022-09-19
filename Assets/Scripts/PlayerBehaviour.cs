@@ -10,10 +10,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private TileCasting[] tileCasting;
     
-    private Command moveUpCommand = new MoveUpCommand();
-    private Command moveDownCommand = new MoveDownCommand();
-    private Command moveLeftCommand = new MoveLeftCommand();
-    private Command moveRightCommand = new MoveRightCommand();
+    private readonly Command moveUpCommand = new MoveUpCommand();
+    private readonly Command moveDownCommand = new MoveDownCommand();
+    private readonly Command moveLeftCommand = new MoveLeftCommand();
+    private readonly Command moveRightCommand = new MoveRightCommand();
     
     private Stack<Command> undoStack;
     private Stack<Command> redoStack;
@@ -84,108 +84,5 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         didMove = false;
-    }
-}
-
-public class MoveUpCommand : Command
-{
-    public override void Execute(GameObject obj, Stack<Command> undoStack, Stack<Command> redoStack)
-    {
-        base.Execute(obj, undoStack, redoStack);
-        obj.transform.position += obj.transform.up;
-        undoStack.Push(this);
-        redoStack.Clear();
-    }
-
-    public override void Undo(GameObject obj, Stack<Command> redoStack)
-    {
-        base.Undo(obj, redoStack);
-        obj.transform.position -= obj.transform.up;
-        redoStack.Push(this);
-    }
-
-    public override void Redo(GameObject obj, Stack<Command> undoStack)
-    {
-        base.Redo(obj, undoStack);
-        obj.transform.position += obj.transform.up;
-        undoStack.Push(this);
-    }
-}
-
-
-public class MoveDownCommand : Command
-{
-    public override void Execute(GameObject obj, Stack<Command> undoStack, Stack<Command> redoStack)
-    {
-        base.Execute(obj, undoStack, redoStack);
-        obj.transform.position -= obj.transform.up;
-        undoStack.Push(this);
-        redoStack.Clear();
-    }
-
-    public override void Undo(GameObject obj, Stack<Command> redoStack)
-    {
-        base.Undo(obj, redoStack);
-        obj.transform.position += obj.transform.up;
-        redoStack.Push(this);
-    }
-
-    public override void Redo(GameObject obj, Stack<Command> undoStack)
-    {
-        base.Redo(obj, undoStack);
-        obj.transform.position -= obj.transform.up;
-        undoStack.Push(this);
-    }
-}
-
-
-public class MoveLeftCommand : Command
-{
-    public override void Execute(GameObject obj, Stack<Command> undoStack, Stack<Command> redoStack)
-    {
-        base.Execute(obj, undoStack, redoStack);
-        obj.transform.position -= obj.transform.right;
-        undoStack.Push(this);
-        redoStack.Clear();
-    }
-
-    public override void Undo(GameObject obj, Stack<Command> redoStack)
-    {
-        base.Undo(obj, redoStack);
-        obj.transform.position += obj.transform.right;
-        redoStack.Push(this);
-    }
-
-    public override void Redo(GameObject obj, Stack<Command> undoStack)
-    {
-        base.Redo(obj, undoStack);
-        obj.transform.position -= obj.transform.right;
-        undoStack.Push(this);
-    }
-}
-
-
-public class MoveRightCommand : Command
-{
-    public override void Execute(GameObject obj, Stack<Command> undoStack, Stack<Command> redoStack)
-    {
-        base.Execute(obj, undoStack, redoStack);
-        obj.transform.position += obj.transform.right;
-        undoStack.Push(this);
-        redoStack.Clear();
-    }
-
-    public override void Undo(GameObject obj, Stack<Command> redoStack)
-    {
-        base.Undo(obj, redoStack);
-        obj.transform.position -= obj.transform.right;
-        redoStack.Push(this);
-    }
-
-    public override void Redo(GameObject obj, Stack<Command> undoStack)
-    {
-        base.Redo(obj, undoStack);
-        obj.transform.position += obj.transform.right;
-        undoStack.Push(this);
     }
 }
