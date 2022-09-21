@@ -7,21 +7,25 @@ using UnityEngine.Networking;
 public class PieceBaseStateObject : ScriptableObject
 {
     [SerializeField] private string pieceName;
-    public Transform thisObject;
-    public bool isSelected;
+    public GameObject thisObject;
 
-    public void Initialize(Transform _transform)
+    public void Initialize(GameObject _gameObject)
     {
-        thisObject = _transform;
+        thisObject = _gameObject;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return thisObject.transform.position;
     }
     
     public virtual void EnterState()
     {
-        isSelected = false;
         Debug.Log("This is a " + pieceName + "!");
     }
-    
-    public virtual void Update() {}
-    
+
     public virtual void ExitState() {}
+
+    public virtual void DoMove(Vector3 _position) {}
+
 }

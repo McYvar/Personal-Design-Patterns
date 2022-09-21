@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoveCommand : ICommand
 {
-    private readonly Vector3 direction;
+    public Vector3 direction;
     
     public MoveCommand(Vector3 _direction)
     {

@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(BoxCollider))]
 public class PieceCasting : MonoBehaviour
 {
-    [FormerlySerializedAs("stateObject")] [SerializeField] public PieceBaseStateObject pieceBaseStateObject;
+    [SerializeField] public PieceBaseStateObject pieceType;
     private void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;
@@ -16,6 +16,6 @@ public class PieceCasting : MonoBehaviour
 
     private void Start()
     {
-        pieceBaseStateObject.Initialize(transform);
+        pieceType.Initialize(gameObject);
     }
 }
