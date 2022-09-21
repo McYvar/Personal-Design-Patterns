@@ -29,8 +29,6 @@ public class PieceStateSelector : MonoBehaviour
     private void Update()
     {
         EmptySpaceCheck();
-
-        Debug.Log(currentPiece);
         if (selectorType == SelectorType.PieceSelection)
         {
             currentTile.SetEmissionColor(Color.cyan);
@@ -54,15 +52,17 @@ public class PieceStateSelector : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (Commandos.undoStack.Count > 0) Commandos.undoStack.Pop().Undo(gameObject, Commandos.redoStack);
+            if (Commandos.undoStack.Count > 0) Commandos.undoStack.Pop().Undo(Commandos.redoStack);
             else Debug.Log("Nothing left to Undo");
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (Commandos.redoStack.Count > 0) Commandos.redoStack.Pop().Redo(gameObject, Commandos.undoStack);
+            if (Commandos.redoStack.Count > 0) Commandos.redoStack.Pop().Redo(Commandos.undoStack);
             else Debug.Log("Nothing left to Redo");
         }
+
+        Debug.Log(Commandos.undoStack.Count);
     }
 
     private void SelectorToggle()
@@ -76,7 +76,7 @@ public class PieceStateSelector : MonoBehaviour
                 break;
 
             case SelectorType.MoveSelection:
-                currentPiece.DoMove(new Vector3(transform.position.x, transform.position.y));
+                currentPiece.DoMove(new Vector3(transform.position.x, transform.position.y, currentPiece.GetPosition().z));
                 MoveSelectorDisable();
                 break;
         }
@@ -85,6 +85,8 @@ public class PieceStateSelector : MonoBehaviour
     private void MoveSelectorDisable()
     {
         if (selectorType == SelectorType.PieceSelection) return;
+        selectedTile.DisableEmission();
+        currentTile.EnableEmission();
         selectorType = SelectorType.PieceSelection;
         transform.position = new Vector3(currentPiece.GetPosition().x, currentPiece.GetPosition().y);
     }
@@ -137,7 +139,6 @@ public class PieceStateSelector : MonoBehaviour
 
     private void SwitchPiece(PieceBaseStateObject _pieceBaseStateObject)
     {
-        currentPiece.ExitState();
         currentPiece = _pieceBaseStateObject;
         currentPiece.EnterState();
     }

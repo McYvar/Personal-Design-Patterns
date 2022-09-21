@@ -3,37 +3,40 @@ using UnityEngine;
 
 public class MoveCommand : ICommand
 {
-    public Vector3 direction;
+    private Vector3 position;
+    private Stack<Vector3> oldPositions;
+    private GameObject thisObject;
     
-    public MoveCommand(Vector3 _direction)
+    public MoveCommand(GameObject _obj ,Vector3 _direction)
     {
-        direction = _direction;
+        thisObject = _obj;
+        position = _direction;
+
+        oldPositions = new Stack<Vector3>();
+    }
+
+    public void ChangeDirection(Vector3 _newDir)
+    {
+        position = _newDir;
     }
     
-    public void Execute(GameObject _obj, Stack<ICommand> _undoStack, Stack<ICommand> _redoStack)
+    public void Execute(Stack<ICommand> _undoStack, Stack<ICommand> _redoStack)
     {
-        RaycastHit hit;
-        if (!Physics.Raycast(_obj.transform.position - _obj.transform.forward + direction, _obj.transform.forward,
-                out hit)) return;
-
-        if (hit.collider.gameObject.GetComponent<TileCasting>() == null) return;
-        _obj.transform.position += direction;
+        oldPositions.Push(thisObject.transform.position);
+        thisObject.transform.position = position;
         _undoStack.Push(this);
         _redoStack.Clear();
-        EmissionsBehaviour.ClearRedoStack();
     }
 
-    public void Undo(GameObject _obj, Stack<ICommand> _redoStack)
+    public void Undo(Stack<ICommand> _redoStack)
     {
-        _obj.transform.position -= direction;
+        thisObject.transform.position = oldPositions.Pop();
         _redoStack.Push(this);
-        EmissionsBehaviour.PopUndoStack();
     }
 
-    public void Redo(GameObject _obj, Stack<ICommand> _undoStack)
+    public void Redo(Stack<ICommand> _undoStack)
     {
-        _obj.transform.position += direction;
+        thisObject.transform.position = position;
         _undoStack.Push(this);
-        EmissionsBehaviour.PushUndoStack(EmissionsBehaviour.emissionRedoStack.Pop());
     }
 }

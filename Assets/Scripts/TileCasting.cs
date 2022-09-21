@@ -13,12 +13,6 @@ public class TileCasting : MonoBehaviour
         myMaterial = GetComponent<MeshRenderer>().material;
     }
 
-    public void UpdateTiles()
-    {
-        if (!Physics.Raycast(transform.position, -transform.forward)) return;
-        EmissionsBehaviour.PushUndoStack(GetComponent<MeshRenderer>());
-    }
-
     public void EnableEmission()
     {
         myMaterial.EnableKeyword("_EMISSION");
