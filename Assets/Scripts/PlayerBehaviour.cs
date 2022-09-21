@@ -9,14 +9,6 @@ public class PlayerBehaviour : MonoBehaviour
     #region variables
 
     private TileCasting[] tileCasting;
-    
-    private readonly Command moveUpCommand = new MoveUpCommand();
-    private readonly Command moveDownCommand = new MoveDownCommand();
-    private readonly Command moveLeftCommand = new MoveLeftCommand();
-    private readonly Command moveRightCommand = new MoveRightCommand();
-    
-    private Stack<Command> undoStack;
-    private Stack<Command> redoStack;
 
     [SerializeField] private KeyCode upButton;
     [SerializeField] private KeyCode downButton;
@@ -28,9 +20,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Start()
     {
-        undoStack = new Stack<Command>();
-        redoStack = new Stack<Command>();
-
         tileCasting = FindObjectsOfType<TileCasting>();
     }
 
@@ -40,13 +29,13 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if      (undoStack.Count > 0) undoStack.Pop().Undo(gameObject, redoStack);
+            if      (Commandos.undoStack.Count > 0) Commandos.undoStack.Pop().Undo(gameObject, Commandos.redoStack);
             else    Debug.Log("Nothing left to Undo");
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if      (redoStack.Count > 0) redoStack.Pop().Redo(gameObject, undoStack);
+            if      (Commandos.redoStack.Count > 0) Commandos.redoStack.Pop().Redo(gameObject, Commandos.undoStack);
             else    Debug.Log("Nothing left to Redo");
         }
     }
@@ -55,25 +44,25 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(upButton))
         {
-            moveUpCommand.Execute(gameObject, undoStack, redoStack);
+            Commandos.moveUpCommand.Execute(gameObject, Commandos.undoStack, Commandos.redoStack);
             didMove = true;
         }
 
         if (Input.GetKeyDown(downButton))
         {
-            moveDownCommand.Execute(gameObject, undoStack, redoStack);
+            Commandos.moveDownCommand.Execute(gameObject, Commandos.undoStack, Commandos.redoStack);
             didMove = true;
         }
 
         if (Input.GetKeyDown(leftButton))
         {
-            moveLeftCommand.Execute(gameObject, undoStack, redoStack);
+            Commandos.moveLeftCommand.Execute(gameObject, Commandos.undoStack, Commandos.redoStack);
             didMove = true;
         }
 
         if (Input.GetKeyDown(rightButton))
         {
-            moveRightCommand.Execute(gameObject, undoStack, redoStack);
+            Commandos.moveRightCommand.Execute(gameObject, Commandos.undoStack, Commandos.redoStack);
             didMove = true;
         }
 

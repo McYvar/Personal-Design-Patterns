@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99c10d24-5b38-48ca-a4a6-aec75e02da63" name="Changes" comment="" />
+    <list default="true" id="99c10d24-5b38-48ca-a4a6-aec75e02da63" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Commands.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts/NoPieceObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts/NoPieceObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts/PawnPieceObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts/PawnPieceObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/PieceBaseStateObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/PieceBaseStateObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/PieceStateSelector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/PieceStateSelector.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/NoPieceObject.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/NoPieceObject.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/PawnObject.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/PawnObject.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/PieceCasting.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/PieceCasting.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Personal-Design-Patterns/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Personal-Design-Patterns/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/MatGreenEmission.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/MatGreenEmission.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/MatGrey.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/MatGrey.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/MatRedEmission.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/MatRedEmission.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CommandPattern.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CommandPattern.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CommandPattern_Profiles/PostFX Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CommandPattern_Profiles/PostFX Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Command.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Command.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EmissionsBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EmissionsBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TileCasting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TileCasting.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,17 +41,23 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/a7/b1d9be92/Stack`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/ec/3e51d190/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PieceObjects/ObjectScripts/NoPieceObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PieceObjects/Pieces/PieceCasting.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2EyqmCBGKjHzacBU9TuEcNq2zhv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Discover.Launch.Via.Unity": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -68,6 +105,10 @@
       <option name="presentableId" value="Default" />
       <updated>1663578332323</updated>
       <workItem from="1663578338445" duration="4814000" />
+      <workItem from="1663655118447" duration="2000" />
+      <workItem from="1663655135521" duration="4000" />
+      <workItem from="1663688662725" duration="3363000" />
+      <workItem from="1663751773698" duration="16867000" />
     </task>
     <servers />
   </component>
@@ -89,6 +130,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>

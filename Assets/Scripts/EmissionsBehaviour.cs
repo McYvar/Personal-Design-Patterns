@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class EmissionsBehaviour : MonoBehaviour
 {
-    public static Stack<MeshRenderer> emissionUndoStack;
     public static Stack<MeshRenderer> emissionRedoStack;
+    private static Stack<MeshRenderer> emissionUndoStack;
 
     private static Material defaultMat;
-    [SerializeField] private Material emissionUndoMat;
-    [SerializeField] private Material emissionRedoMat;
 
     private static bool canUpdate;
 
@@ -27,12 +25,12 @@ public class EmissionsBehaviour : MonoBehaviour
         {
             foreach (MeshRenderer mesh in emissionRedoStack)
             {
-                mesh.material = emissionRedoMat;
+                mesh.material.color += new Color(0, emissionRedoStack.Count * 0.05f, 0);
             }
             
             foreach (MeshRenderer mesh in emissionUndoStack)
             {
-                mesh.material = emissionUndoMat;
+                mesh.material.color += new Color(emissionUndoStack.Count * 0.05f, 0, 0);
             }
             canUpdate = false;
         }
