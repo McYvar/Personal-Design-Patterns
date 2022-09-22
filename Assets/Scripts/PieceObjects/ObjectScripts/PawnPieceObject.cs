@@ -15,11 +15,12 @@ public class PawnPieceObject : PieceBaseStateObject
     public override void DoMove(Vector3 _position)
     {
         moveCommand.ChangeDirection(_position);
-        foreach (Vector3 _pos in AllowedPositions())
+        foreach (Vector3 toCheckPosition in AllowedPositions())
         {
-            if (_position - thisObject.transform.position == _pos)
+            if (_position - thisObject.transform.position == toCheckPosition)
             {
-                moveCommand.Execute(Commandos.undoStack, Commandos.redoStack);
+                if (!CanExecute(_position)) return;
+                moveCommand.Execute(CommandHistory.undoStack, CommandHistory.redoStack);
             }
         }
     }

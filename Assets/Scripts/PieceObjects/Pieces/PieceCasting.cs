@@ -7,8 +7,10 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(BoxCollider))]
 public class PieceCasting : MonoBehaviour
-{
+{   
+    // Every object needs a monobehaviour to cast the scriptable object to the state machine
     [SerializeField] public PieceBaseStateObject pieceType;
+
     private void Awake()
     {
         GetComponent<BoxCollider>().isTrigger = true;

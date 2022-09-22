@@ -6,7 +6,9 @@ public enum SelectorType { PieceSelection, MoveSelection }
 [RequireComponent(typeof(Rigidbody))]
 public class PieceStateSelector : MonoBehaviour
 {
-    [FormerlySerializedAs("startPieceBaseState")] [FormerlySerializedAs("startState")] [SerializeField] private PieceBaseStateObject noPiece;
+    [SerializeField] private PieceBaseStateObject noPiece;
+
+    // currentPiece is the state machine, less formally here, piece selector
     private PieceBaseStateObject currentPiece;
     private TileCasting currentTile;
     private TileCasting selectedTile;
@@ -52,17 +54,17 @@ public class PieceStateSelector : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (Commandos.undoStack.Count > 0) Commandos.undoStack.Pop().Undo(Commandos.redoStack);
+            if (CommandHistory.undoStack.Count > 0) CommandHistory.undoStack.Pop().Undo(CommandHistory.redoStack);
             else Debug.Log("Nothing left to Undo");
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (Commandos.redoStack.Count > 0) Commandos.redoStack.Pop().Redo(Commandos.undoStack);
+            if (CommandHistory.redoStack.Count > 0) CommandHistory.redoStack.Pop().Redo(CommandHistory.undoStack);
             else Debug.Log("Nothing left to Redo");
         }
 
-        Debug.Log(Commandos.undoStack.Count);
+        Debug.Log(CommandHistory.undoStack.Count);
     }
 
     private void SelectorToggle()
