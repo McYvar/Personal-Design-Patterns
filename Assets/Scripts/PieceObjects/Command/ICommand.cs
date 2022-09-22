@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Taking this interface, we can easily make commands of this type and are able to undo/redo every given command
 public interface ICommand
 {
     // Things Execute must do, execute action, save action to Undo list, delete Redo list

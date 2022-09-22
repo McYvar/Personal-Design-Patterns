@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Every tile has this script so we can properrly adress the tiles and highlight them
 [RequireComponent(typeof(BoxCollider))]
 public class TileCasting : MonoBehaviour
 {

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
+// I use two selector types, when MoveSelection is on after selecting a piece, the piece spot is highlighted
+// and then you can select a new spot to place down the piece
 public enum SelectorType { PieceSelection, MoveSelection }
 
 [RequireComponent(typeof(Rigidbody))]
@@ -8,8 +10,10 @@ public class PieceStateSelector : MonoBehaviour
 {
     [SerializeField] private PieceBaseStateObject noPiece;
 
-    // currentPiece is the state machine, less formally here, piece selector
+    // CurrentPiece is the state machine, less formally here, piece selector
     private PieceBaseStateObject currentPiece;
+
+    // Tiles are used for higlighting and seeking empty spaces
     private TileCasting currentTile;
     private TileCasting selectedTile;
 
@@ -31,6 +35,7 @@ public class PieceStateSelector : MonoBehaviour
     private void Update()
     {
         EmptySpaceCheck();
+
         if (selectorType == SelectorType.PieceSelection)
         {
             currentTile.SetEmissionColor(Color.cyan);
@@ -43,7 +48,7 @@ public class PieceStateSelector : MonoBehaviour
             selectedTile.EnableEmission();
         }
 
-        // input
+        // input, I used command for undoing moves, so making this a command wasn't needed
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) SelectorToggle();
         if (Input.GetKeyDown(KeyCode.Escape)) MoveSelectorDisable();
 
@@ -63,10 +68,9 @@ public class PieceStateSelector : MonoBehaviour
             if (CommandHistory.redoStack.Count > 0) CommandHistory.redoStack.Pop().Redo(CommandHistory.undoStack);
             else Debug.Log("Nothing left to Redo");
         }
-
-        Debug.Log(CommandHistory.undoStack.Count);
     }
 
+    // Upon pressing "return/space" and the selector collides with a piece, then we highlight the tile and select this piece for moving
     private void SelectorToggle()
     {
         switch (selectorType)
@@ -84,6 +88,7 @@ public class PieceStateSelector : MonoBehaviour
         }
     }
 
+    // Upon pressing "escape" we go back to the (if selected) selected tile... and we can select things again
     private void MoveSelectorDisable()
     {
         if (selectorType == SelectorType.PieceSelection) return;
@@ -104,6 +109,7 @@ public class PieceStateSelector : MonoBehaviour
         PieceTriggerBehaviour(_trigger);
     }
 
+    // When selector collides with a tile, it's highlighted
     private void TileTriggerBehaviour(Collider _trigger)
     {
         TileCasting colliderTile = _trigger.GetComponent<TileCasting>();
@@ -115,6 +121,7 @@ public class PieceStateSelector : MonoBehaviour
         currentTile.EnableEmission();
     }
 
+    // When selector collides with a piece, you can select it
     private void PieceTriggerBehaviour(Collider _trigger)
     {
         PieceCasting castPiece = _trigger.GetComponent<PieceCasting>();
@@ -128,6 +135,7 @@ public class PieceStateSelector : MonoBehaviour
         }
     }
 
+    // If the hovered space doesn't contain a piece, switch to noPiece
     private void EmptySpaceCheck()
     {
         if (selectorType == SelectorType.MoveSelection) return;
